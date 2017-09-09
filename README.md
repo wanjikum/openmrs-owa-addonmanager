@@ -2,6 +2,8 @@
 
 # OpenMRS Add-Ons Manager
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9177ef6ba94a4c6ea6887968bd298dc3)](https://www.codacy.com/app/wanjikum/openmrs-owa-addonmanager?utm_source=github.com&utm_medium=referral&utm_content=wanjikum/openmrs-owa-addonmanager&utm_campaign=badger)
+
 This repository contains the openmrs-addOnManager OpenMRS Open Web App.
 
 > The OpenMRS Add-Ons Manager is a tool used for uploading, listing, and deleting existing OWAs and modules.
