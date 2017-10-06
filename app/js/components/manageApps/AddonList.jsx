@@ -14,11 +14,12 @@ export const AddonList = ({handleDownload, install, appList, openPage, openModal
     <tbody>
       {
         appList.map((app, key) => {
+          console.log("app", app);
           return (
             <tr key={key}>
               <td onClick={() => openPage(app)}>
                 <img
-                  src={app.icons !== null && app.icons !== undefined ? 
+                  src={app.icon !== null && app.icon !== undefined ? 
                     `/${location.href.split('/')[3]}/owa/openmrs-addonmanager/${app.icons[48]}` : 
                     `./img/omrs-button.png`}
                   alt="addon logo"
@@ -29,7 +30,7 @@ export const AddonList = ({handleDownload, install, appList, openPage, openModal
                 <div><h5  className="addon-description">{app.description}</h5></div>
               </td>
               <td onClick={() => openPage(app)}>
-                {app.developer ? app.developer.name : app.maintainers[0].name}
+                {app.developer ? app.developer.name : null}
               </td>
               <td onClick={() => openPage(app)}>
                 {app.version ? app.version : app.latestVersion}

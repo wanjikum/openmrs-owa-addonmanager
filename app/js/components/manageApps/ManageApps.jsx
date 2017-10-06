@@ -259,8 +259,26 @@ export default class ManageApps extends React.Component {
     return location.href = `/${location.href.split('/')[3]}/owa/${app.folderName}/${app.launch_path}`;
   }
 
-  handleDownload(e) {
-    e.preventDefault();
+  handleDownload(app) {
+    return (e) => {
+      e.preventDefault();
+        this.handleDownloadUri(app);
+      }    
+  }
+
+  handleDownloadUri(app) {
+    axios.get(`https://addons.openmrs.org/api/v1//addon/${app.uid}`)
+      .then((res, resolve) => {
+        this.setState((prevState, props) => {
+          return {
+            downloadUri: res.data['versions'][0].downloadUri,
+          };
+        });
+        return true;
+      }).then(() => this.handleInstall());
+  }
+
+  handleInstall() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', this.state.downloadUri, true);
     xhr.responseType = 'blob';
@@ -312,18 +330,16 @@ export default class ManageApps extends React.Component {
           };
         });
       } else {
+        let apps = [];
         searchResults.forEach(result => {
           if(result.type == "OWA") {
-            axios.get(`https://addons.openmrs.org/api/v1//addon/${result.uid}`)
-              .then(res => {
-                this.setState((prevState, props) => {
-                  return {
-                    appList: [res.data],
-                    downloadUri: res.data['versions'][0].downloadUri,
-                    install: true
-                  };
-                });
-              });
+            apps.push(result);
+          }
+        });
+        this.setState((prevState, props) => {
+          return {
+            appList: apps,
+            install: true
           }
         });
       }
