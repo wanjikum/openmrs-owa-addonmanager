@@ -14,7 +14,6 @@ export const AddonList = ({handleDownload, install, appList, openPage, openModal
     <tbody>
       {
         appList.map((app, key) => {
-          console.log("app", app);
           return (
             <tr key={key}>
               <td onClick={() => openPage(app)}>
@@ -48,7 +47,7 @@ export const AddonList = ({handleDownload, install, appList, openPage, openModal
                     <i
                       className="glyphicon glyphicon-download-alt text-primary install-icon"
                       id="icon-btn"
-                      onClick={(e) => handleDownload(e)}
+                      onClick={handleDownload(app)}
                     />
                 }
               </td>           

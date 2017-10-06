@@ -262,19 +262,20 @@ export default class ManageApps extends React.Component {
   handleDownload(app) {
     return (e) => {
       e.preventDefault();
-        this.handleDownloadUri(app);
+      this.handleDownloadUri(app);
       }    
   }
 
   handleDownloadUri(app) {
     axios.get(`https://addons.openmrs.org/api/v1//addon/${app.uid}`)
-      .then((res, resolve) => {
+      .then((res) => {
         this.setState((prevState, props) => {
           return {
             downloadUri: res.data['versions'][0].downloadUri,
           };
         });
         return true;
+        console.log("download uri", this.state.downloadUri);
       }).then(() => this.handleInstall());
   }
 
