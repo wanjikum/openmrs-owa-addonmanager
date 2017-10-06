@@ -334,7 +334,10 @@ export default class ManageApps extends React.Component {
         let apps = [];
         searchResults.forEach(result => {
           if(result.type == "OWA") {
-            apps.push(result);
+             axios.get(`https://addons.openmrs.org/api/v1//addon/${result.uid}`)
+              .then((res) => {
+                apps.push(res.data);
+              });
           }
         });
         this.setState((prevState, props) => {

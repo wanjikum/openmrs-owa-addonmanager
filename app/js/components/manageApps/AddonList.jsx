@@ -29,7 +29,7 @@ export const AddonList = ({handleDownload, install, appList, openPage, openModal
                 <div><h5  className="addon-description">{app.description}</h5></div>
               </td>
               <td onClick={() => openPage(app)}>
-                {app.developer ? app.developer.name : null}
+                {app.developer ? app.developer.name : app.maintainers[0].name}
               </td>
               <td onClick={() => openPage(app)}>
                 {app.version ? app.version : app.latestVersion}
